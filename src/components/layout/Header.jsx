@@ -7,8 +7,9 @@ export default function Header(){
     return(
         <HeaderContainer>
             <h1 className="logo">
-                <Link to="/"></Link>
+                <Link to="/">
                 <SiNetflix/>
+                </Link>
             </h1>
             <Gnb/>
             <SearchWrapper>
@@ -29,7 +30,7 @@ const HeaderContainer = styled.header`
     width: 100%;
     gap: 100px;
     z-index: 999;
-    .logo{
+    .logo a{
         display: flex;
         align-items: center;
         font-size: 30px;
