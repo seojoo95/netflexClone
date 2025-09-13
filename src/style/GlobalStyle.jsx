@@ -10,6 +10,17 @@ const GlobalStyle = createGlobalStyle`
     body, html{
         background: #333;
     }
+    input[type='text']{
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+    }
+    button{
+        background: transparent;
+        border: none;
+        outline: none;
+    }
 `
 
 export default GlobalStyle
