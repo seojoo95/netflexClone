@@ -16,7 +16,27 @@ const typeStyle = {
     bgGray :css`
         background-color: gray;
         color: white;
+    `,
+    circle :css`
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        border: none;
+        background-color: white;
+        color: black;
+        padding: 0;
+    `,
+    circleOut :css`
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        border: solid 1px white;
+        background: transparent;
+        color: white;
+        padding: 0;
+
     `
+
 }
 const StyleButton = styled.button`
     display: flex;

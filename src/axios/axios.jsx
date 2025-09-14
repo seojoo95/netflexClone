@@ -52,4 +52,40 @@ export const getMovieVideos = async(movieId)=>{
         console.error(error)
     }
 }
+
+//영화 장르 가져오기
+export const getGenre = async()=>{
+    try{
+        const res = await instance.get(`/genre/movie/list`)
+        return res.data.genres;
+    }catch(error){
+        console.error(error)
+    }
+}
+
+//장르별 영화 리스트 받아오기
+export const getMovieGenres = async(genreId)=>{
+    //특정 장르의 값을 넣으면 그 장르에 해당하는 영화만 리스트로 출력
+    try{
+        const res = await instance.get(`/discover/movie`,{
+            params : {
+                width_genres : genreId
+            }
+            //특수문자를 필터링 하기 위해 params로 넣음(params 사용을 선호)
+        })
+        console.log(res)
+        return res.data.results
+    }catch(error){
+        console.error(error)
+    }
+}
+//상세정보
+export const getModalDetail = async(movieId)=>{
+    try{
+        const res = await instance.get(`movie/${movieId}`);
+        return res.data
+    }catch(error){
+        console.error(error)
+    }
+}
 export default instance
