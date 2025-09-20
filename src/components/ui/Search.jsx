@@ -1,13 +1,15 @@
-import { IoMdSearch, IoMdClose } from "react-icons/io";
+import { IoMdClose, IoMdSearch } from "react-icons/io";
 // 아이콘이 같은 컨텐츠 카테고리는 합쳐써도된다 (/io가 같음)
-import {styled} from 'styled-components';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { styled } from 'styled-components';
 
 export default function Search(){
     const [searchOpen, setSearchOpen] = useState(false);
     const [keyword, setKeyword] = useState('');
     const [clearBtn, setClearBtn] = useState(false);
+    const navigate = useNavigate();
 
     //useref
     const inputRef = useRef(HTMLInputElement)
@@ -19,11 +21,24 @@ export default function Search(){
       const value = e.target.value;
       setKeyword(value)
       setClearBtn(value.trim() !== "")
+      const keywordText = value.trim();
       /*
       trim()은 문자열에서 앞뒤에 공백을 제거해주는 역할
       !== "" = 공백을 다 제거 했을 때 공백이 아니라면(문자가 채워져있다면) true반환
       value.trim().length > 0
        */
+
+      if(keywordText){
+        const searchUrl = `/search?keyword=${encodeURIComponent(keywordText)}`
+        navigate(searchUrl, {replace : true});
+        //replace : true 히스토리 누적 방지
+        //encodeURIComponent(value) 문자열로 바꿔주는 자바스크립트 함수
+        //특수문자, 한글, 공백 같은 문자가 url에서 에러가 나지 않도록 퍼센트 인코딩형식으로 변환
+        //ex)%20&454...
+      }else{
+        //텍스트가 비워지면
+        navigate('/')
+      }
     }
     const handleClearInput = (e)=>{
       e.preventDefault();

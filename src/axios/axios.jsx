@@ -73,7 +73,6 @@ export const getMovieGenres = async(genreId)=>{
             }
             //특수문자를 필터링 하기 위해 params로 넣음(params 사용을 선호)
         })
-        console.log(res)
         return res.data.results
     }catch(error){
         console.error(error)
@@ -84,6 +83,14 @@ export const getModalDetail = async(movieId)=>{
     try{
         const res = await instance.get(`movie/${movieId}`);
         return res.data
+    }catch(error){
+        console.error(error)
+    }
+}
+export const getSearchResults = async(keyword)=>{
+    try{
+        const res = await instance.get(`search/multi?query=${keyword}`);
+        return res.data.results
     }catch(error){
         console.error(error)
     }

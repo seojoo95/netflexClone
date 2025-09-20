@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { getMovieGenres, getMovies } from "../axios/axios";
-import MainVideo from "../components/ui/MainVideo";
 import MovieSlider from "../components/ui/MovieSlider";
 
 
@@ -29,7 +28,7 @@ const {data : nowPlaying=[]} = useQuery({
     */
     return(
         <>
-        <MainVideo/>
+        {/* <MainVideo/> */}
         <MovieSlider movies={nowPlaying ?.slice(1,11)}
         title='TOP 10 시리즈'
         type='nowPlaying'
